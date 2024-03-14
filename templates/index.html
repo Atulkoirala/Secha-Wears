@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secha</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-content: center;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            font-family: Arial, sans-serif; /* Adding a fallback font */
+        }
+        anker{
+            width: 100%;
+            display: flex;
+            gap: 2rem;
+        }
+        a {
+            color: red; /* 'lightred' is not a valid color */
+            background-color: lightcyan;
+            margin: 0.5rem;
+            padding: 10px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            margin: 1rem;
+            background-color: rgba(0, 0, 0, 0.1); /* rgba for transparency */
+            border-radius: 15px;
+            border: 1px solid black;
+            padding: 1rem; /* Added padding for better spacing */
+        }
+        h1 {
+            width: 100%;
+            text-align: center; /* Aligning heading in the center */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            margin: auto;
+        }
+        input {
+            width: fit-content;
+            margin: 0.2rem auto;
+            padding: 10px; /* Equal padding on all sides */
+            border-radius: 10px;
+            border: 1px solid #ccc; /* Adding a border for better visibility */
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            width: fit-content;
+            margin: 0.25rem auto;
+            border-radius: 10px;
+            background-color: black;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+        }
+        select {
+            margin: auto;
+            width: fit-content; /* Set the width of the select box */
+            padding: 8px; /* Add padding to the select box */
+            font-size: 16px; /* Set the font size */
+            border: 1px solid #ccc; /* Add a border */
+            border-radius: 4px; /* Add border radius */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+            background-color: #fff; /* Set background color */
+            outline: none; /* Remove outline */
+            appearance: none; /* Remove default appearance */
+            cursor: pointer; /* Add pointer cursor */
+        }
+        /* Styling for alerts */
+        .alert {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Secha Wears Management</h1>
+
+    <section class="anker">
+        <a href='stock'>View Stocks</a>
+        <a href='invoice'>View Invoice</a>
+        <a href='sales'>View Sales</a>
+    </section>
+
+    <section>
+        <div align='center'>
+            <h2>Current Stock</h2>
+            <form method='post' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type='file' name='files' accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                <input type="number" name="code" placeholder="Pin Code">
+                <select name="selects">
+                    <option value="" disabled selected>Select One</option>
+                    <option value="sales">Item wise Sales</option>
+                    <option value="invoice">Invoice Profit</option>
+                    <option value="current">Current Stock</option>
+                </select>
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}' role='alert'>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+</body>
+</html>
+

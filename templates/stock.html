@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Secha Current Stock</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 90%;
+        overflow: auto;
+        max-width: 95%%;
+        max-height: 30px;
+        height: 10px;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+        margin: auto;
+      }
+      .h1-text{
+        width:100% ; 
+        text-align:center;
+      }
+      .anker{
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          gap: 2rem;
+      }
+      a {
+          color: red; /* 'lightred' is not a valid color */
+          background-color: lightcyan !important;
+          padding: 10px 10px;
+          border-radius: 12px;
+          font-weight: bold;
+          font-size: 1.5rem;
+          text-decoration: none;
+        }
+      .homes{
+        color: green;
+      }
+      .main{
+        font-weight: bold;
+        font-size: 1.15rem;
+        background-color: black !important;
+        color: white;
+      }
+</style>
+<body>
+
+	<h1 class="h1-text">Current Stock</h1>
+
+    <section class="anker">
+        <a href='/' class="homes">Home</a>
+        <a href='/invoice'>View Invoice</a>
+        <a href='/sales'>View Sales</a>
+    </section>
+
+		<table style='width:100%'>
+            <tr class="main">
+                <th>S.N.</th>
+                <th>Item Name</th>
+                <th>Item Code</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Amount</th>
+            </tr>
+	    {% for i in item %}
+
+            <tr>
+            	<td>{{i.ids}}</th>
+            	<td>{{i.name}}</th>
+            	<td>{{i.itemCode}}</th>
+            	<td>{{i.stock}}</th>
+            	<td>{{i.price}}</th>
+                <td>{{i.amount}}</th>
+            </tr>
+	    {% endfor %}
+            <tr class="main">
+                <td>-</th>
+                <td>Total Amount</th>
+                <td>-</th>
+                <td>{{stocks}}</th>
+                <td>-</th>
+                <td>{{total}}</th>
+            </tr>
+        </table>
+
+        
+</body>
+<!-- <script>
+    const total = 0;
+    function total_amt(){
+        for (int i=0;i<thisset.length();i++){
+            total  += thisset[i].amount;
+        }
+    }
+</script> -->
+</html>

@@ -1,0 +1,47 @@
+.form-input{
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+
+    <section class="invoice">
+        <div align='center'>
+            <h2>Invoice Profit</h2>
+            <a href='invoice'>View Invoice</a>
+            <form method='post' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type='file' name='files' accept=".csv"/> <!-- Accept only CSV files -->
+                <input type="number" name="code" placeholder="Pin Code">
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}' role='alert'>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+    <section class="sales">
+        <div align='center'>
+            <h2>Item wise Stock</h2>
+            <a href='sales'>View Items</a>
+            <form method='post' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <input type='file' name='files' accept=".csv"/> <!-- Accept only CSV files -->
+                <input type="number" name="code" placeholder="Pin Code">
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}' role='alert'>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
